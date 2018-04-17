@@ -1,0 +1,16 @@
+<h1>Toppings Confirmation Below</h1>
+
+
+
+<form action="index" method="post">
+
+  <%session[:toppings][0].each do |topping|%>
+  <h2><%= topping %></h2> <input type="radio" name="<%= topping %>" value="<%= topping %>" checked="checked"> Yes
+  <input type="radio" name="<%= topping %>" value="none"> No
+<%end%>
+<br>
+<input type="submit" value="Confirm Toppings">
+</form>
+<br>
+<!-- <script type="text/javascript" src="pizza.js"></script>
+<input type="button" value="Confirm Toppings" onclick="submitForms()" /> -->

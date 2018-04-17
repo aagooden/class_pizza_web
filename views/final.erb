@@ -1,0 +1,86 @@
+<ul>
+  <li><a class="active" href="/">Home</a></li>
+  <li><a href="news">News</a></li>
+  <li><a href="contact">Contact</a></li>
+  <li><a href="about">About</a></li>
+</ul>
+
+<h1>Your final order:</h1>
+<div class="center">
+  <%count = 1%>
+  <% session[:full_order].each do |order| %>
+    <h1>Pizza <%=count%></h1>
+    <h2>Size:  <%= order[0][0] %></h2>
+    <p></p>
+    <h2>Crust:  <%= order[1][0] %></h2>
+    <p></p>
+    <h2>Sauce:  <%= order[2][0] %></h2>
+    <p></p>
+    <h2><u>Meats:</u></h2>
+    <p></p>
+      <%if order[3][0] == nil%>
+        <h2>None</h2>
+      <%else%>
+          <%order[3][0].each do |meat|%>
+              <% if meat == "pepperoni" %>
+                  <img src="pepperoni.jpg" style="width:100px;height:100px;">
+                <% elsif meat == "sausage" %>
+                  <img src="sausage.jpg" style="width:100px;height:100px;">
+                <% elsif meat == "ham" %>
+                  <img src="ham.jpg" style="width:100px;height:100px;">
+                <% elsif meat == "chicken" %>
+                  <img src="chicken.jpg" style="width:100px;height:100px;">
+              <% end %>
+          <% end %>
+      <% end %>
+    <br>
+    <br>
+    <h2><u>Toppings:</u> </h2>
+    <p></p>
+    <%if order[4][0] == nil%>
+      <h3>None</h3>
+    <%else%>
+        <%order[4][0].each do |topping|%>
+        <% if topping == "peppers" %>
+              <img src="peppers.jpg" style="width:100px;height:100px;">
+            <% elsif topping == "onions" %>
+              <img src="onion.jpg" style="width:100px;height:100px;">
+            <% elsif topping == "olives" %>
+              <img src="olives.jpg" style="width:100px;height:100px;">
+            <% elsif topping == "mushrooms" %>
+              <img src="mushrooms.jpeg" style="width:100px;height:100px;">
+            <% elsif topping == "cheese" %>
+              <img src="cheese.jpeg" style="width:100px;height:100px;">
+        <% end %>
+    <% end %>
+    <%count += 1%>
+    <br>
+  <% end %>
+  <h3>_________________________________________</h3>
+    <br>
+  <% end %>
+</div>
+
+<% total_total = session[:final_total].to_f %>
+<% tax = total_total * 0.06 %>
+<% if session[:address] == [] %>
+  <% delivery = 0 %>
+  <h2>No Delivery</h2>
+<% else %>
+  <% f_name = session[:address][0] %>
+  <% l_name = session[:address][1] %>
+  <% address = session[:address][2] %>
+  <% city = session[:address][3] %>
+  <% state = session[:address][4] %>
+  <h1>Order will be delivered to:</h1>
+  <div class="center">
+  <h2>  <%= f_name %>  <%= l_name %> </h2>
+  <h2>  <%= address %> </h2>
+  <h2>  <%= city %>,  <%= state %> </h2>
+  <% delivery = 5 %>
+<% end %>
+<% total_total = total_total + delivery + tax  %>
+<h2>Your total is: $<%= sprintf("%.02f",total_total)%></h2>
+</div>
+<h3></h3>
+<br>
