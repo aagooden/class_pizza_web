@@ -17,6 +17,21 @@ get "/" do
 	erb :welcome
 end
 
+post "/prebuilt" do
+	redirect "/prebuilt"
+end
+
+get "/prebuilt" do
+	erb :prebuilt
+end
+
+post "/premades" do
+	redirect "/premades"
+end
+
+get "/premades" do
+	erb :premades
+end
 
 post "/size" do
 	redirect "/size"
@@ -82,6 +97,7 @@ end
 
 post "/toppings" do
 	session[:meats].push(params[:meats])
+	p session[:meats]
 	redirect "/toppings"
 end
 
@@ -91,7 +107,33 @@ get "/toppings" do
 end
 
 post "/meats_conf" do
-	session[:toppings].push(params[:toppings])
+	if params[:Premade] == "pepperoni_sausage"
+		session[:size].push(["medium"])
+		session[:crust].push(["regular"])
+		session[:sauce].push(["tomato"])
+		session[:meats].push(["pepperoni", "sausage"])
+		session[:toppings].push(["cheese"])
+	elsif params[:Premade] == "chicken"
+		session[:size].push(["medium"])
+		session[:crust].push(["regular"])
+		session[:sauce].push(["pesto"])
+		session[:meats].push(["chicken"])
+		session[:toppings].push(["cheese"])
+	elsif params[:Premade] == "ham"
+		session[:size].push(["medium"])
+		session[:crust].push(["regular"])
+		session[:sauce].push(["spicy"])
+		session[:meats].push(["ham"])
+		session[:toppings].push(["cheese"])
+	elsif params[:Premade] == "pepperoni"
+		session[:size].push(["medium"])
+		session[:crust].push(["regular"])
+		session[:sauce].push(["tomato"])
+		session[:meats].push(["pepperoni"])
+		session[:toppings].push(["cheese"])
+	else
+		session[:toppings].push(params[:toppings])
+	end
 	redirect "/meats_conf"
 end
 
