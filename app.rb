@@ -107,33 +107,20 @@ get "/toppings" do
 end
 
 post "/meats_conf" do
-	if params[:Premade] == "pepperoni_sausage"
-		session[:size].push(["medium"])
-		session[:crust].push(["regular"])
-		session[:sauce].push(["tomato"])
-		session[:meats].push(["pepperoni", "sausage"])
-		session[:toppings].push(["cheese"])
-	elsif params[:Premade] == "chicken"
-		session[:size].push(["medium"])
-		session[:crust].push(["regular"])
-		session[:sauce].push(["pesto"])
-		session[:meats].push(["chicken"])
-		session[:toppings].push(["cheese"])
-	elsif params[:Premade] == "ham"
-		session[:size].push(["medium"])
-		session[:crust].push(["regular"])
-		session[:sauce].push(["spicy"])
-		session[:meats].push(["ham"])
-		session[:toppings].push(["cheese"])
-	elsif params[:Premade] == "pepperoni"
-		session[:size].push(["medium"])
-		session[:crust].push(["regular"])
-		session[:sauce].push(["tomato"])
-		session[:meats].push(["pepperoni"])
-		session[:toppings].push(["cheese"])
+	@size = session[:size]
+	@crust = session[:crust]
+	@sauce = session[:sauce]
+	@meats = session[:meats]
+	@toppings = session[:toppings]
+	p params[:Premade]
+	if params[:Premade] == "pepperoni, sausage"
+		premade_pizza(params[:Premade].split(", "))	
+	elsif params[:Premade].class == String
+		premade_pizza(params[:Premade].split("\n"))	
 	else
 		session[:toppings].push(params[:toppings])
 	end
+	p session[:meats]
 	redirect "/meats_conf"
 end
 
@@ -215,7 +202,7 @@ post "/another" do
 		session[:meats] = Array.new
 		session[:toppings] = Array.new
 		session[:current_order] = Array.new
-		redirect "/size"
+		redirect "/prebuilt"
 end
 
 
