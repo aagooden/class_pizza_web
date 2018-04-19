@@ -97,6 +97,14 @@ textarea {
   font-size: 2vw;
 }
 
+#state {
+  padding: 10px 0;
+  text-indent: 10px;
+  border: solid 2px #ddd;
+  border-radius: 10px;
+  font-size: 2vw;
+}
+
 div.box{
   /* text-align: center; */
   text-align: left;
@@ -249,6 +257,7 @@ li a:hover:not(.active) {
   border-left: solid 2px green;
   border-radius: 25px;
 }
+
 
 
 

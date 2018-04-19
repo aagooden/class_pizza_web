@@ -37,3 +37,15 @@ def overall_total(full_order)
   puts "Hitting the method.  The total is #{total}"
   return total
 end
+
+def premade_pizza(value)
+  @size.push("medium")
+  @crust.push("regular")
+  if value.join == "ham"
+    @sauce.push("spicy")
+  else
+    @sauce.push("tomato")
+  end
+  @meats.push(value)
+  @toppings.push(["cheese"])
+end

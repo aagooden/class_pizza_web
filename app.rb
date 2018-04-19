@@ -17,6 +17,21 @@ get "/" do
 	erb :welcome
 end
 
+post "/prebuilt" do
+	redirect "/prebuilt"
+end
+
+get "/prebuilt" do
+	erb :prebuilt
+end
+
+post "/premades" do
+	redirect "/premades"
+end
+
+get "/premades" do
+	erb :premades
+end
 
 post "/size" do
 	redirect "/size"
@@ -82,6 +97,7 @@ end
 
 post "/toppings" do
 	session[:meats].push(params[:meats])
+	p session[:meats]
 	redirect "/toppings"
 end
 
@@ -91,7 +107,20 @@ get "/toppings" do
 end
 
 post "/meats_conf" do
-	session[:toppings].push(params[:toppings])
+	@size = session[:size]
+	@crust = session[:crust]
+	@sauce = session[:sauce]
+	@meats = session[:meats]
+	@toppings = session[:toppings]
+	p params[:Premade]
+	if params[:Premade] == "pepperoni, sausage"
+		premade_pizza(params[:Premade].split(", "))	
+	elsif params[:Premade].class == String
+		premade_pizza(params[:Premade].split("\n"))	
+	else
+		session[:toppings].push(params[:toppings])
+	end
+	p session[:meats]
 	redirect "/meats_conf"
 end
 
@@ -173,7 +202,7 @@ post "/another" do
 		session[:meats] = Array.new
 		session[:toppings] = Array.new
 		session[:current_order] = Array.new
-		redirect "/size"
+		redirect "/prebuilt"
 end
 
 

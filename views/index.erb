@@ -15,15 +15,7 @@
     <h2>None</h2>
   <%else%>
       <%order[3][0].each do |meat|%>
-          <% if meat == "pepperoni" %>
-               <img src="pepperoni.jpg" style="width:100px;height:100px;">
-              <% elsif meat == "sausage" %>
-               <img src="sausage.jpg" style="width:100px;height:100px;">
-              <% elsif meat == "ham" %>
-               <img src="ham.jpg" style="width:100px;height:100px;">
-              <% elsif meat == "chicken" %>
-               <img src="chicken.jpg" style="width:100px;height:100px;">
-          <% end %>
+        <img src="<%= meat %>.jpg">
       <% end %>
   <% end %>
   <br>
@@ -34,17 +26,7 @@
     <h2>None</h2>
   <%else%>
       <%order[4][0].each do |topping|%>
-      <% if topping == "peppers" %>
-            <img src="peppers.jpg" style="width:100px;height:100px;">
-          <% elsif topping == "onions" %>
-            <img src="onion.jpg" style="width:100px;height:100px;">
-          <% elsif topping == "olives" %>
-            <img src="olives.jpg" style="width:100px;height:100px;">
-          <% elsif topping == "mushrooms" %>
-            <img src="mushrooms.jpeg" style="width:100px;height:100px;">
-          <% elsif topping == "cheese" %>
-            <img src="cheese.jpeg" style="width:100px;height:100px;">
-      <% end %>
+        <img src="<%= topping %>.jpg">
       <% end %>
   <% end %>
   <%count += 1%>
