@@ -1,4 +1,1 @@
-# 
-# blank_app
-# pizza_web
-# class_pizza_web
+This is a version of the Pizza App that was cloned and changed by class members as a class project.  
